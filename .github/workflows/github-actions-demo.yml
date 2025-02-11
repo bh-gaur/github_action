@@ -4,6 +4,8 @@ on: [push]
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    env:
+      MY_VAR: "Hello, World!"
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
       - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by GitHub!"
@@ -17,3 +19,6 @@ jobs:
           ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
              echo $TESTING_VARIABLE
+      - name: Use custom environment variable
+        run: |
+          echo "Custom variable: $MY_VAR"       
