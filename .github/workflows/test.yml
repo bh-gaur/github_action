@@ -1,42 +1,26 @@
-name: Node.js Test Workflow
+name: Testing Github workflow
 
-# Trigger the workflow on push to the main branch or on pull requests
-on:
-  push:
-    branches:
-      - main
+# run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+on: 
+  workflow_dispatch:
+  push: 
+    branches: 
+      - 'main'
   pull_request:
     branches:
-      - main
+      - 'main'
+
 
 jobs:
-  test:
+  Explore-GitHub-Actions:
     runs-on: ubuntu-latest
+    env:
+      MY_VAR: "Hello, World!"
+      NAME: ${{ github.actor }}
 
     steps:
-      # Step 1: Checkout the repository
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Step 2: Set up Node.js environment (specify version here)
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'  # Use the Node.js version that your project needs
-
-      # Step 3: Install dependencies
-      - name: Install dependencies
-        run: npm install
-
-      # Step 4: Run the tests
-      - name: Run tests
-        run: npm test
-
-      # # Step 5: (Optional) Upload test results (for example, with Jest)
-      # - name: Upload test results
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: test-results
-      #     path: ./test-results
-
-
+      - name: Use custom environment variable
+        run: |
+          echo "Custom variable: $MY_VAR" 
+          echo "Job triggered by $NAME"      
