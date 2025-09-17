@@ -1,0 +1,26 @@
+name:  Github workflow 2
+
+# run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
+on: 
+  workflow_dispatch:
+  push: 
+    branches: 
+      - 'keeri'
+  pull_request:
+    branches:
+      - 'keerti'
+
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    env:
+      MY_VAR: "Hello, World!"
+      NAME: ${{ github.actor }}
+
+    steps:
+      - name: Use custom environment variable
+        run: |
+          echo "Custom variable: $MY_VAR" 
+          echo "Job triggered by $NAME"   
